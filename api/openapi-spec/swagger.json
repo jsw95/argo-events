@@ -3168,34 +3168,34 @@
       "description": "GCPCloudFunctionTrigger refers to specification of the trigger to invoke a GCP Cloud Function",
       "type": "object",
       "required": [
-        "FunctionName",
-        "Region",
-        "Payload"
+        "functionName",
+        "region",
+        "payload"
       ],
       "properties": {
-        "CredentialsPath": {
+        "credentialsPath": {
           "description": "CredentialsPath refers to the volume path of a service account keys json file",
           "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector"
         },
-        "FunctionName": {
+        "functionName": {
           "description": "FunctionName refers to the name of the function to invoke.",
           "type": "string"
         },
-        "Parameters": {
+        "parameters": {
           "description": "Parameters is the list of key-value extracted from event's payload that are applied to the trigger resource.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.TriggerParameter"
           }
         },
-        "Payload": {
+        "payload": {
           "description": "Payload is the list of key-value extracted from an event payload to construct the request payload.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.TriggerParameter"
           }
         },
-        "Region": {
+        "region": {
           "description": "Region is GCP region",
           "type": "string"
         }

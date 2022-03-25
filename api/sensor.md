@@ -1239,7 +1239,7 @@ Description
 <tbody>
 <tr>
 <td>
-<code>FunctionName</code></br> <em> string </em>
+<code>functionName</code></br> <em> string </em>
 </td>
 <td>
 <p>
@@ -1249,7 +1249,7 @@ FunctionName refers to the name of the function to invoke.
 </tr>
 <tr>
 <td>
-<code>CredentialsPath</code></br> <em>
+<code>credentialsPath</code></br> <em>
 <a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#secretkeyselector-v1-core">
 Kubernetes core/v1.SecretKeySelector </a> </em>
 </td>
@@ -1263,7 +1263,7 @@ file
 </tr>
 <tr>
 <td>
-<code>Region</code></br> <em> string </em>
+<code>region</code></br> <em> string </em>
 </td>
 <td>
 <p>
@@ -1273,7 +1273,7 @@ Region is GCP region
 </tr>
 <tr>
 <td>
-<code>Payload</code></br> <em>
+<code>payload</code></br> <em>
 <a href="#argoproj.io/v1alpha1.TriggerParameter"> \[\]TriggerParameter
 </a> </em>
 </td>
@@ -1286,7 +1286,7 @@ construct the request payload.
 </tr>
 <tr>
 <td>
-<code>Parameters</code></br> <em>
+<code>parameters</code></br> <em>
 <a href="#argoproj.io/v1alpha1.TriggerParameter"> \[\]TriggerParameter
 </a> </em>
 </td>

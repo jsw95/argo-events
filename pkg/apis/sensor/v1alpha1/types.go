@@ -517,18 +517,18 @@ type AWSLambdaTrigger struct {
 // GCPCloudFunctionTrigger refers to specification of the trigger to invoke a GCP Cloud Function
 type GCPCloudFunctionTrigger struct {
 	// FunctionName refers to the name of the function to invoke.
-	FunctionName string `protobuf:"bytes,1,opt,name=functionName"`
+	FunctionName string `json:"functionName" protobuf:"bytes,1,opt,name=functionName"`
 	// CredentialsPath refers to the volume path of a service account keys json file
 	// +optional
-	CredentialsPath *corev1.SecretKeySelector `protobuf:"bytes,2,opt,name=credentialsPath"`
+	CredentialsPath *corev1.SecretKeySelector `json:"credentialsPath" protobuf:"bytes,2,opt,name=credentialsPath"`
 	// Region is GCP region
-	Region string `protobuf:"bytes,3,opt,name=region"`
+	Region string `json:"region" protobuf:"bytes,3,opt,name=region"`
 	// Payload is the list of key-value extracted from an event payload to construct the request payload.
-	Payload []TriggerParameter `protobuf:"bytes,4,rep,name=payload"`
+	Payload []TriggerParameter `json:"payload" protobuf:"bytes,4,rep,name=payload"`
 	// Parameters is the list of key-value extracted from event's payload that are applied to
 	// the trigger resource.
 	// +optional
-	Parameters []TriggerParameter `protobuf:"bytes,5,rep,name=parameters"`
+	Parameters []TriggerParameter `json:"parameters" protobuf:"bytes,5,rep,name=parameters"`
 }
 
 // AzureEventHubsTrigger refers to specification of the Azure Event Hubs Trigger

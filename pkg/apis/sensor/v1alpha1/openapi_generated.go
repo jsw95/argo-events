@@ -858,7 +858,7 @@ func schema_pkg_apis_sensor_v1alpha1_GCPCloudFunctionTrigger(ref common.Referenc
 				Description: "GCPCloudFunctionTrigger refers to specification of the trigger to invoke a GCP Cloud Function",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
-					"FunctionName": {
+					"functionName": {
 						SchemaProps: spec.SchemaProps{
 							Description: "FunctionName refers to the name of the function to invoke.",
 							Default:     "",
@@ -866,13 +866,13 @@ func schema_pkg_apis_sensor_v1alpha1_GCPCloudFunctionTrigger(ref common.Referenc
 							Format:      "",
 						},
 					},
-					"CredentialsPath": {
+					"credentialsPath": {
 						SchemaProps: spec.SchemaProps{
 							Description: "CredentialsPath refers to the volume path of a service account keys json file",
 							Ref:         ref("k8s.io/api/core/v1.SecretKeySelector"),
 						},
 					},
-					"Region": {
+					"region": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Region is GCP region",
 							Default:     "",
@@ -880,7 +880,7 @@ func schema_pkg_apis_sensor_v1alpha1_GCPCloudFunctionTrigger(ref common.Referenc
 							Format:      "",
 						},
 					},
-					"Payload": {
+					"payload": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Payload is the list of key-value extracted from an event payload to construct the request payload.",
 							Type:        []string{"array"},
@@ -894,7 +894,7 @@ func schema_pkg_apis_sensor_v1alpha1_GCPCloudFunctionTrigger(ref common.Referenc
 							},
 						},
 					},
-					"Parameters": {
+					"parameters": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Parameters is the list of key-value extracted from event's payload that are applied to the trigger resource.",
 							Type:        []string{"array"},
@@ -909,7 +909,7 @@ func schema_pkg_apis_sensor_v1alpha1_GCPCloudFunctionTrigger(ref common.Referenc
 						},
 					},
 				},
-				Required: []string{"FunctionName", "Region", "Payload"},
+				Required: []string{"functionName", "region", "payload"},
 			},
 		},
 		Dependencies: []string{
