@@ -356,8 +356,7 @@ type TriggerTemplate struct {
 	HTTP *HTTPTrigger `json:"http,omitempty" protobuf:"bytes,5,opt,name=http"`
 	// AWSLambda refers to the trigger designed to invoke AWS Lambda function with with on-the-fly constructable payload.
 	// +optional
-	AWSLambda        *AWSLambdaTrigger `json:"awsLambda,omitempty" protobuf:"bytes,6,opt,name=awsLambda"`
-	GCPCloudFunction *GCPCloudFunctionTrigger
+	AWSLambda *AWSLambdaTrigger `json:"awsLambda,omitempty" protobuf:"bytes,6,opt,name=awsLambda"`
 	// CustomTrigger refers to the trigger designed to connect to a gRPC trigger server and execute a custom trigger.
 	// +optional
 	CustomTrigger *CustomTrigger `json:"custom,omitempty" protobuf:"bytes,7,opt,name=custom"`
@@ -385,6 +384,9 @@ type TriggerTemplate struct {
 	// Criteria to reset the conditons
 	// +optional
 	ConditionsReset []ConditionsResetCriteria `json:"conditionsReset,omitempty" protobuf:"bytes,15,rep,name=conditionsReset"`
+	// GCPCloudFunction refers to the trigger designed to invoke GCP Cloud Function with with on-the-fly constructable payload.
+	// +optional
+	GCPCloudFunction *GCPCloudFunctionTrigger `json:"gCPCloudFunction,omitempty" protobuf:"bytes,16,opt,name=gCPCloudFunction"`
 }
 
 type ConditionsResetCriteria struct {
@@ -515,36 +517,18 @@ type AWSLambdaTrigger struct {
 // GCPCloudFunctionTrigger refers to specification of the trigger to invoke a GCP Cloud Function
 type GCPCloudFunctionTrigger struct {
 	// FunctionName refers to the name of the function to invoke.
-	FunctionName string `json:"functionName" protobuf:"bytes,1,opt,name=functionName"`
+	FunctionName string `protobuf:"bytes,1,opt,name=functionName"`
 	// CredentialsPath refers to the volume path of a service account keys json file
 	// +optional
-	CredentialsPath *corev1.SecretKeySelector `json:"accessKey,omitempty" protobuf:"bytes,2,opt,name=accessKey"`
-
+	CredentialsPath *corev1.SecretKeySelector `protobuf:"bytes,2,opt,name=credentialsPath"`
 	// Region is GCP region
-	Region string `json:"region" protobuf:"bytes,4,opt,name=region"`
+	Region string `protobuf:"bytes,3,opt,name=region"`
 	// Payload is the list of key-value extracted from an event payload to construct the request payload.
-	Payload []TriggerParameter `json:"payload" protobuf:"bytes,5,rep,name=payload"`
+	Payload []TriggerParameter `protobuf:"bytes,4,rep,name=payload"`
 	// Parameters is the list of key-value extracted from event's payload that are applied to
 	// the trigger resource.
 	// +optional
-	Parameters []TriggerParameter `json:"parameters,omitempty" protobuf:"bytes,6,rep,name=parameters"`
-	// Choose from the following options.
-	//
-	//    * RequestResponse (default) - Invoke the function synchronously. Keep
-	//    the connection open until the function returns a response or times out.
-	//    The API response includes the function response and additional data.
-	//
-	//    * Event - Invoke the function asynchronously. Send events that fail multiple
-	//    times to the function's dead-letter queue (if it's configured). The API
-	//    response only includes a status code.
-	//
-	//    * DryRun - Validate parameter values and verify that the user or role
-	//    has permission to invoke the function.
-	// +optional
-	InvocationType *string `json:"invocationType,omitempty" protobuf:"bytes,7,opt,name=invocationType"`
-	// RoleARN is the Amazon Resource Name (ARN) of the role to assume.
-	// +optional
-	RoleARN string `json:"roleARN,omitempty" protobuf:"bytes,8,opt,name=roleARN"`
+	Parameters []TriggerParameter `protobuf:"bytes,5,rep,name=parameters"`
 }
 
 // AzureEventHubsTrigger refers to specification of the Azure Event Hubs Trigger

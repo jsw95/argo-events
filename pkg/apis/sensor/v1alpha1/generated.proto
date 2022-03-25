@@ -311,6 +311,27 @@ message FileArtifact {
   optional string path = 1;
 }
 
+// GCPCloudFunctionTrigger refers to specification of the trigger to invoke a GCP Cloud Function
+message GCPCloudFunctionTrigger {
+  // FunctionName refers to the name of the function to invoke.
+  optional string functionName = 1;
+
+  // CredentialsPath refers to the volume path of a service account keys json file
+  // +optional
+  optional k8s.io.api.core.v1.SecretKeySelector credentialsPath = 2;
+
+  // Region is GCP region
+  optional string region = 3;
+
+  // Payload is the list of key-value extracted from an event payload to construct the request payload.
+  repeated TriggerParameter payload = 4;
+
+  // Parameters is the list of key-value extracted from event's payload that are applied to
+  // the trigger resource.
+  // +optional
+  repeated TriggerParameter parameters = 5;
+}
+
 // GitArtifact contains information about an artifact stored in git
 message GitArtifact {
   // Git URL
@@ -922,6 +943,10 @@ message TriggerTemplate {
   // Criteria to reset the conditons
   // +optional
   repeated ConditionsResetCriteria conditionsReset = 15;
+
+  // GCPCloudFunction refers to the trigger designed to invoke GCP Cloud Function with with on-the-fly constructable payload.
+  // +optional
+  optional GCPCloudFunctionTrigger gCPCloudFunction = 16;
 }
 
 // URLArtifact contains information about an artifact at an http endpoint.

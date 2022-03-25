@@ -1212,6 +1212,94 @@ Description
 </tr>
 </tbody>
 </table>
+<h3 id="argoproj.io/v1alpha1.GCPCloudFunctionTrigger">
+GCPCloudFunctionTrigger
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#argoproj.io/v1alpha1.TriggerTemplate">TriggerTemplate</a>)
+</p>
+<p>
+<p>
+GCPCloudFunctionTrigger refers to specification of the trigger to invoke
+a GCP Cloud Function
+</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>
+Field
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>FunctionName</code></br> <em> string </em>
+</td>
+<td>
+<p>
+FunctionName refers to the name of the function to invoke.
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>CredentialsPath</code></br> <em>
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#secretkeyselector-v1-core">
+Kubernetes core/v1.SecretKeySelector </a> </em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>
+CredentialsPath refers to the volume path of a service account keys json
+file
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>Region</code></br> <em> string </em>
+</td>
+<td>
+<p>
+Region is GCP region
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>Payload</code></br> <em>
+<a href="#argoproj.io/v1alpha1.TriggerParameter"> \[\]TriggerParameter
+</a> </em>
+</td>
+<td>
+<p>
+Payload is the list of key-value extracted from an event payload to
+construct the request payload.
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>Parameters</code></br> <em>
+<a href="#argoproj.io/v1alpha1.TriggerParameter"> \[\]TriggerParameter
+</a> </em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>
+Parameters is the list of key-value extracted from event’s payload that
+are applied to the trigger resource.
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="argoproj.io/v1alpha1.GitArtifact">
 GitArtifact
 </h3>
@@ -3088,6 +3176,7 @@ TriggerParameter
 <a href="#argoproj.io/v1alpha1.ArgoWorkflowTrigger">ArgoWorkflowTrigger</a>,
 <a href="#argoproj.io/v1alpha1.AzureEventHubsTrigger">AzureEventHubsTrigger</a>,
 <a href="#argoproj.io/v1alpha1.CustomTrigger">CustomTrigger</a>,
+<a href="#argoproj.io/v1alpha1.GCPCloudFunctionTrigger">GCPCloudFunctionTrigger</a>,
 <a href="#argoproj.io/v1alpha1.HTTPTrigger">HTTPTrigger</a>,
 <a href="#argoproj.io/v1alpha1.KafkaTrigger">KafkaTrigger</a>,
 <a href="#argoproj.io/v1alpha1.NATSTrigger">NATSTrigger</a>,
@@ -3546,6 +3635,20 @@ Pulsar refers to the trigger designed to place messages on Pulsar topic.
 <em>(Optional)</em>
 <p>
 Criteria to reset the conditons
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>gCPCloudFunction</code></br> <em>
+<a href="#argoproj.io/v1alpha1.GCPCloudFunctionTrigger">
+GCPCloudFunctionTrigger </a> </em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>
+GCPCloudFunction refers to the trigger designed to invoke GCP Cloud
+Function with with on-the-fly constructable payload.
 </p>
 </td>
 </tr>

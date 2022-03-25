@@ -3181,6 +3181,43 @@
       },
       "type": "object"
     },
+    "io.argoproj.sensor.v1alpha1.GCPCloudFunctionTrigger": {
+      "description": "GCPCloudFunctionTrigger refers to specification of the trigger to invoke a GCP Cloud Function",
+      "properties": {
+        "CredentialsPath": {
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
+          "description": "CredentialsPath refers to the volume path of a service account keys json file"
+        },
+        "FunctionName": {
+          "description": "FunctionName refers to the name of the function to invoke.",
+          "type": "string"
+        },
+        "Parameters": {
+          "description": "Parameters is the list of key-value extracted from event's payload that are applied to the trigger resource.",
+          "items": {
+            "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.TriggerParameter"
+          },
+          "type": "array"
+        },
+        "Payload": {
+          "description": "Payload is the list of key-value extracted from an event payload to construct the request payload.",
+          "items": {
+            "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.TriggerParameter"
+          },
+          "type": "array"
+        },
+        "Region": {
+          "description": "Region is GCP region",
+          "type": "string"
+        }
+      },
+      "required": [
+        "FunctionName",
+        "Region",
+        "Payload"
+      ],
+      "type": "object"
+    },
     "io.argoproj.sensor.v1alpha1.GitArtifact": {
       "description": "GitArtifact contains information about an artifact stored in git",
       "properties": {
@@ -3991,6 +4028,10 @@
         "custom": {
           "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.CustomTrigger",
           "description": "CustomTrigger refers to the trigger designed to connect to a gRPC trigger server and execute a custom trigger."
+        },
+        "gCPCloudFunction": {
+          "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.GCPCloudFunctionTrigger",
+          "description": "GCPCloudFunction refers to the trigger designed to invoke GCP Cloud Function with with on-the-fly constructable payload."
         },
         "http": {
           "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.HTTPTrigger",
