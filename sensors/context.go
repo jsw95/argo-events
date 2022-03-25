@@ -26,6 +26,7 @@ import (
 	"github.com/apache/pulsar-client-go/pulsar"
 	"github.com/aws/aws-sdk-go/service/lambda"
 	natslib "github.com/nats-io/nats.go"
+	"google.golang.org/api/cloudfunctions/v1"
 	"google.golang.org/grpc"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/kubernetes"
@@ -63,6 +64,8 @@ type SensorContext struct {
 	natsConnections map[string]*natslib.Conn
 	// awsLambdaClients holds the references to active AWS Lambda clients.
 	awsLambdaClients map[string]*lambda.Lambda
+	// gcpCloudFunctionClients holds the references to active GCP Cloud Function clients.
+	gcpCloudFunctionClients map[string]*cloudfunctions.Service
 	// openwhiskClients holds the references to active OpenWhisk clients.
 	openwhiskClients map[string]*whisk.Client
 	// azureEventHubsClients holds the references to active Azure Event Hub clients.
@@ -84,12 +87,13 @@ func NewSensorContext(kubeClient kubernetes.Interface, dynamicClient dynamic.Int
 		slackHTTPClient: &http.Client{
 			Timeout: time.Minute * 5,
 		},
-		kafkaProducers:        make(map[string]sarama.AsyncProducer),
-		pulsarProducers:       make(map[string]pulsar.Producer),
-		natsConnections:       make(map[string]*natslib.Conn),
-		awsLambdaClients:      make(map[string]*lambda.Lambda),
-		openwhiskClients:      make(map[string]*whisk.Client),
-		azureEventHubsClients: make(map[string]*eventhubs.Hub),
-		metrics:               metrics,
+		kafkaProducers:          make(map[string]sarama.AsyncProducer),
+		pulsarProducers:         make(map[string]pulsar.Producer),
+		natsConnections:         make(map[string]*natslib.Conn),
+		awsLambdaClients:        make(map[string]*lambda.Lambda),
+		gcpCloudFunctionClients: make(map[string]*cloudfunctions.Service),
+		openwhiskClients:        make(map[string]*whisk.Client),
+		azureEventHubsClients:   make(map[string]*eventhubs.Hub),
+		metrics:                 metrics,
 	}
 }

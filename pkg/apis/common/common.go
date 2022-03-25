@@ -86,6 +86,7 @@ var (
 	OpenWhiskTrigger      TriggerType = "OpenWhisk"
 	ArgoWorkflowTrigger   TriggerType = "ArgoWorkflow"
 	LambdaTrigger         TriggerType = "Lambda"
+	GCPFunctionTrigger    TriggerType = "GCPFunction"
 	CustomTrigger         TriggerType = "Custom"
 	HTTPTrigger           TriggerType = "HTTP"
 	KafkaTrigger          TriggerType = "Kafka"

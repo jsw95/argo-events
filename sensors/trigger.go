@@ -26,6 +26,7 @@ import (
 	openwhisk "github.com/argoproj/argo-events/sensors/triggers/apache-openwhisk"
 	argoworkflow "github.com/argoproj/argo-events/sensors/triggers/argo-workflow"
 	awslambda "github.com/argoproj/argo-events/sensors/triggers/aws-lambda"
+	cloudfunctions "github.com/argoproj/argo-events/sensors/triggers/gcp-cloud-function"
 	eventhubs "github.com/argoproj/argo-events/sensors/triggers/azure-event-hubs"
 	customtrigger "github.com/argoproj/argo-events/sensors/triggers/custom-trigger"
 	"github.com/argoproj/argo-events/sensors/triggers/http"
@@ -72,6 +73,15 @@ func (sensorCtx *SensorContext) GetTrigger(ctx context.Context, trigger *v1alpha
 
 	if trigger.Template.AWSLambda != nil {
 		result, err := awslambda.NewAWSLambdaTrigger(sensorCtx.awsLambdaClients, sensorCtx.sensor, trigger, log)
+		if err != nil {
+			log.Errorw("failed to new a Lambda trigger", zap.Error(err))
+			return nil
+		}
+		return result
+	}
+
+	if trigger.Template.GCPCloudFunction != nil {
+		result, err := cloudfunctions.NewGCPCloudFunctionTrigger(sensorCtx.gcpCloudFunctionClients, sensorCtx.sensor, trigger, log)
 		if err != nil {
 			log.Errorw("failed to new a Lambda trigger", zap.Error(err))
 			return nil
