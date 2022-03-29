@@ -83,7 +83,7 @@ func (sensorCtx *SensorContext) GetTrigger(ctx context.Context, trigger *v1alpha
 	if trigger.Template.GCPCloudFunction != nil {
 		result, err := cloudfunctions.NewGCPCloudFunctionTrigger(sensorCtx.gcpCloudFunctionClients, sensorCtx.sensor, trigger, log)
 		if err != nil {
-			log.Errorw("failed to new a Lambda trigger", zap.Error(err))
+			log.Errorw("failed to new a GCPCloudFunction trigger", zap.Error(err))
 			return nil
 		}
 		return result
